@@ -101,3 +101,5 @@ prompt pure
 source /Users/thoov/.homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH=$PATH:/Users/thoov/.homebrew/opt/go/libexec/bin
+
+export PATH="$HOME/.yarn/bin:$PATH"

@@ -5,7 +5,6 @@ if has('vim_starting')
     set nocompatible " Be iMproved
   endif
 
-  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -27,6 +26,9 @@ NeoBundle 'mhartington/oceanic-next'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/Vim-fugitive'
+
+" Gutter plugins
+NeoBundle 'kshenoy/vim-signature'
 
 " Language plugins
 NeoBundle 'mxw/vim-jsx'
@@ -58,10 +60,6 @@ NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'kien/ctrlp.vim'
 
-" Airline / Powerline / Status plugins
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-
 " Autocomplete plugins
 NeoBundle 'ervandew/supertab'
 NeoBundle 'Shougo/deoplete.nvim'
@@ -91,6 +89,7 @@ nnoremap <leader>t :CtrlPCurWD<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>a :Ack<SPACE>
+nnoremap <leader>tm :SignatureToggle<CR>
 inoremap jj <ESC>
 
 " tab settings
@@ -128,17 +127,32 @@ set wildmode=longest,list,full
 vmap < <gv
 vmap > >gv
 
-" copy to osx clipboard
-vnoremap <C-c> "*y<CR>
-set clipboard=unnamed
-
 " theme settings
 syntax enable
-colorscheme OceanicNext
 set background=dark
+hi StatusLine gui=NONE
+
+" TODO: figure out these settings
+hi vertsplit ctermfg=238 ctermbg=235
+hi LineNr ctermfg=237
+hi StatusLineNC ctermfg=235 ctermbg=237
+hi Search ctermbg=58 ctermfg=15
+hi Default ctermfg=1
+hi clear SignColumn
+hi SignColumn ctermbg=235
+hi GitGutterAdd ctermbg=235 ctermfg=245
+hi GitGutterChange ctermbg=235 ctermfg=245
+hi GitGutterDelete ctermbg=235 ctermfg=245
+hi GitGutterChangeDelete ctermbg=235 ctermfg=245
+hi EndOfBuffer ctermfg=237 ctermbg=235
+
+set statusline=%=%f\ %m
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+set laststatus=2
+set noshowmode
 
 if (has('termguicolors'))
- set termguicolors
+  set termguicolors
 endif
 
 " show trailing whitespace
@@ -235,37 +249,6 @@ map g/ <Plug>(incsearch-stay)
 " Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
-" vim-airline/vim-airline
-let g:airline_theme='oceanicnext'
-let g:airline#extensions#tabline#enabled=1
-let g:airline_right_sep = ''
-let g:airline_left_sep = ''
-let g:airline#extensions#tabline#show_tab_nr=1
-let g:airline#extensions#tabline#buffer_idx_mode=1
-let g:airline#extensions#tabline#show_tab_type=0
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-tmap <leader>1 <C-\><C-n><Plug>AirlineSelectTab1
-tmap <leader>2 <C-\><C-n><Plug>AirlineSelectTab2
-tmap <leader>3 <C-\><C-n><Plug>AirlineSelectTab3
-tmap <leader>4 <C-\><C-n><Plug>AirlineSelectTab4
-tmap <leader>5 <C-\><C-n><Plug>AirlineSelectTab5
-tmap <leader>6 <C-\><C-n><Plug>AirlineSelectTab6
-tmap <leader>7 <C-\><C-n><Plug>AirlineSelectTab7
-tmap <leader>8 <C-\><C-n><Plug>AirlineSelectTab8
-tmap <leader>9 <C-\><C-n><Plug>AirlineSelectTab9
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-
 if executable('rg')
   set grepprg=rg\ --color=never
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
@@ -275,3 +258,4 @@ endif
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 let g:ackprg = 'rg --vimgrep --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*"'
+
