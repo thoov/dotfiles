@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 alias travis="cd ~/Documents/travis"
 alias store="cd ~/Documents/nest/store"
 alias account="cd ~/Documents/nest/account"
+alias kill-nginx='sudo kill $(ps aux | grep '\''[n]ginx'\'' | awk '\''{print $2}'\'')'
 
 export NVM_DIR="/Users/thoov/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
