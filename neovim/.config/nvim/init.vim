@@ -1,80 +1,37 @@
-if 0 | endif
+set nocompatible
+filetype off
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible " Be iMproved
-  endif
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'mhartington/oceanic-next'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kshenoy/vim-signature'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'tpope/vim-markdown'
+Plugin 'othree/html5.vim'
+Plugin 'elzr/vim-json'
+Plugin 'w0rp/ale'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'Yggdroot/indentLine'
 
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
-" Theme plugins
-NeoBundle 'mhartington/oceanic-next'
-
-" Git plugins
-NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/Vim-fugitive'
-
-" Gutter plugins
-NeoBundle 'kshenoy/vim-signature'
-
-" Language plugins
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'rust-lang/rust.vim'
-
-" Startup plugins
-NeoBundle 'mhinz/vim-startify'
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'scrooloose/nerdtree'
-
-" Text / Movement plugins
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Tpope/vim-commentary'
-NeoBundle 'Raimondi/delimitmate'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'vim-scripts/Align'
-
-" Search plugins
-NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'kien/ctrlp.vim'
-
-" Autocomplete plugins
-NeoBundle 'ervandew/supertab'
-NeoBundle 'Shougo/deoplete.nvim'
-
-" Lint plugins
-NeoBundle 'benekastah/neomake'
-
-call neobundle#end()
-
-" Required:
+Plugin 'Raimondi/delimitmate'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/Align'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'ervandew/supertab'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 let mapleader = ','
 noremap <C-h> <C-w>h
@@ -92,23 +49,31 @@ nnoremap <leader>a :Ack<SPACE>
 nnoremap <leader>tm :SignatureToggle<CR>
 inoremap jj <ESC>
 
-" tab settings
+" Spaces & Tab settings
+set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set expandtab
 
-" turn on the number guide and set it to relative
+" UI Config
 set relativenumber number
+set showcmd
+set cursorline
+set wildmenu
+set wildignore=log/**,node_modules/**,bower_components/**,target/**,tmp/**,*/.git/*,*/tmp/*,*.swp
+set wildmode=longest,list,full
+set lazyredraw
+set showmatch
+
+" Searching
+set incsearch
+set hlsearch
 
 set autoindent
 set encoding=utf8
-set expandtab
 set ignorecase
-set incsearch
-set showcmd
 set smartcase
 set directory-=.
-set cursorline
-set guifont=Inconsolata\ for\ Powerline:h13
 
 " reload files when changed on disk, i.e. via `git checkout`
 set autoread
@@ -119,9 +84,6 @@ set nocompatible
 let g:NERDSpaceDelims = 1
 let g:ctrlp_match_window = 'order:ttb,max:20'
 
-set wildmenu
-set wildignore=log/**,node_modules/**,bower_components/**,target/**,tmp/**
-set wildmode=longest,list,full
 
 " keep section highlighed when indenting
 vmap < <gv
@@ -147,7 +109,8 @@ hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 hi EndOfBuffer ctermfg=237 ctermbg=235
 
 set statusline=%=%f\ %m
-set fillchars=vert:\ ,stl:\ ,stlnc:\
+" set fillchars=vert:\ ,stl:\ ,stlnc:\ " this is causing ////// on the
+" statusline
 set laststatus=2
 set noshowmode
 
@@ -195,19 +158,6 @@ set undodir=~/.config/nvim/undodir
 set undofile
 
 let g:NERDTreeShowHidden=1
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-autocmd BufWritePost,BufEnter * Neomake
-
-let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-
-let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
 
 " tell delimitmate to insert a newline on expand
 let delimitMate_expand_cr=1
@@ -234,7 +184,6 @@ let g:indentLine_char = '¦'
 let g:indentLine_color_term = 239
 
 " haya14busa/incsearch.vim
-set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -255,7 +204,6 @@ if executable('rg')
   let g:ctrlp_use_caching = 0
 endif
 
-set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 let g:ackprg = 'rg --vimgrep --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*"'
 
