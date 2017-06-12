@@ -70,6 +70,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR=nvim
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -89,6 +91,7 @@ alias store="cd ~/Documents/nest/store"
 alias account="cd ~/Documents/nest/account"
 alias ruby="cd ~/Documents/nest/ruby"
 alias kill-nginx='sudo kill $(ps aux | grep '\''[n]ginx'\'' | awk '\''{print $2}'\'')'
+alias vim="nvim"
 
 export NVM_DIR="/Users/thoov/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

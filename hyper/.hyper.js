@@ -1,10 +1,10 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 14,
 
     // font family with optional fallbacks
-    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Inconsolata, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -81,7 +81,7 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
@@ -91,6 +91,10 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+
+    alwaysOnTop: {
+      default: false
+    }
   },
 
   // a list of plugins to fetch and install from npm
@@ -101,7 +105,11 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
 	  'hyper-hide-title',
-	  'hyper-snazzy'
+	  'hyper-snazzy',
+    'hypercwd',
+    'hyperterm-dibdabs',
+    'hyperlinks',
+    'hyper-always-on-top'
   ],
 
   // in development, you can create a directory under
