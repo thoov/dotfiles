@@ -1,53 +1,64 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'mhinz/vim-grepper'
-Plugin 'mhartington/oceanic-next'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'kshenoy/vim-signature'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'tpope/vim-markdown'
-Plugin 'othree/html5.vim'
-Plugin 'elzr/vim-json'
-Plugin 'w0rp/ale'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'Yggdroot/indentLine'
-
-Plugin 'Raimondi/delimitmate'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'vim-scripts/Align'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'ervandew/supertab'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
-call vundle#end()
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'mhinz/vim-grepper'
+Plug 'mhartington/oceanic-next'
+Plug 'airblade/vim-gitgutter'
+Plug 'kshenoy/vim-signature'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'leafgarland/typescript-vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'tpope/vim-markdown'
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'w0rp/ale'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'Yggdroot/indentLine'
+Plug 'Raimondi/delimitmate'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/Align'
+Plug 'Shougo/deoplete.nvim'
+Plug 'ervandew/supertab'
+Plug 'kien/ctrlp.vim'
+call plug#end()
 filetype plugin indent on
 
 let mapleader = ','
+
+" Remap Ctrl-hjkl to move to different panes
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" ,l aligns the block
 noremap <leader>l :Align
+
+" ,g toogles git markings
+nnoremap <leader>g :GitGutterToggle<CR>
+
+" ,m toogles markers
+nnoremap <leader>m :SignatureToggleSigns<CR>
+
+" ,b searches open buffers
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+" ,d toogles nerd tree
 nnoremap <leader>d :NERDTreeToggle<CR>
+
+" ,f opens the current buffer's location in nerd tree
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>t :CtrlPCurWD<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
-nnoremap <leader>a :Ack<SPACE>
-nnoremap <leader>tm :SignatureToggle<CR>
+
+nnoremap <leader>a :Grepper -highlight -tool rg<CR>
 inoremap jj <ESC>
 
 " Spaces & Tab settings
@@ -159,29 +170,6 @@ let g:vim_json_syntax_conceal = 0
 let g:indentLine_char = '¦'
 let g:indentLine_color_term = 239
 
-" haya14busa/incsearch.vim
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
 " Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-
-let g:ackprg = 'rg --vimgrep --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*"'
-
-" Highlight search matches
-set hlsearch

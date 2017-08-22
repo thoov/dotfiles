@@ -107,7 +107,6 @@ module.exports = {
 	  'hyper-hide-title',
 	  'hyper-snazzy',
     'hypercwd',
-    'hyperterm-dibdabs',
     'hyperlinks',
     'hyper-always-on-top'
   ],

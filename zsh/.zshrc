@@ -108,3 +108,9 @@ source /Users/thoov/.homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlight
 export PATH=$PATH:/Users/thoov/.homebrew/opt/go/libexec/bin
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/thoov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/thoov/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/thoov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/thoov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
