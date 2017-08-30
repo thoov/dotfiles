@@ -2,6 +2,11 @@
   core:
     allowPendingPaneItems: false
     audioBeep: false
+    disabledPackages: [
+      "vim-mode-plus"
+      "ex-mode"
+      "relative-numbers"
+    ]
     telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
@@ -10,7 +15,7 @@
     titleBar: "custom"
   editor:
     fontFamily: "Inconsolata"
-    fontSize: 16
+    fontSize: 18
     invisibles: {}
     preferredLineLength: 120
     showIndentGuide: true
