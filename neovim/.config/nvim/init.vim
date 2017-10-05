@@ -18,6 +18,7 @@ Plug 'elzr/vim-json'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
@@ -59,6 +60,7 @@ nnoremap <leader>t :CtrlPCurWD<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 
 nnoremap <leader>a :Grepper -highlight -tool rg<CR>
+nnoremap <leader>s :GrepperRg<Space>
 inoremap jj <ESC>
 
 " Spaces & Tab settings
@@ -123,7 +125,7 @@ set laststatus=2
 set noshowmode
 
 if (has('termguicolors'))
-  set termguicolors
+ set termguicolors
 endif
 
 " show trailing whitespace
@@ -173,3 +175,8 @@ let g:indentLine_color_term = 239
 " Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif

@@ -1,7 +1,15 @@
+// Future versions of Hyper may add additional config options,
+// which will not automatically be merged into this file.
+// See https://hyper.is#cfg for all currently supported options.
+
 module.exports = {
   config: {
+    // Choose either "stable" for receiving highly polished,
+    // or "canary" for less polished but more frequent updates
+    updateChannel: 'canary',
+
     // default font size in pixels for all tabs
-    fontSize: 14,
+    fontSize: 16,
 
     // font family with optional fallbacks
     fontFamily: 'Inconsolata, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -12,7 +20,8 @@ module.exports = {
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
     cursorShape: 'BEAM',
 
-    cursorBlink: true,
+    // set to true for blinking cursor
+    cursorBlink: false,
 
     // color of the text
     foregroundColor: '#fff',
@@ -39,7 +48,7 @@ module.exports = {
     showWindowControls: '',
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '0 14px 12px 14px',
+    padding: '12px 14px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -65,10 +74,17 @@ module.exports = {
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
-    // make sure to use a full path if the binary name doesn't work
-    // (e.g `C:\\Windows\\System32\\bash.exe` instad of just `bash.exe`)
-    // if you're using powershell, make sure to remove the `--login` below
-    shell: 'zsh',
+    //
+    // Windows
+    // - Make sure to use a full path if the binary name doesn't work
+    // - Remove `--login` in shellArgs
+    //
+    // Bash on Windows
+    // - Example: `C:\\Windows\\System32\\bash.exe`
+    //
+    // Powershell on Windows
+    // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
+    shell: '',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
@@ -81,7 +97,7 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false,
+    copyOnSelect: false
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
@@ -91,10 +107,6 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-
-    alwaysOnTop: {
-      default: false
-    }
   },
 
   // a list of plugins to fetch and install from npm
@@ -104,15 +116,22 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-	  'hyper-hide-title',
-	  'hyper-snazzy',
-    'hypercwd',
-    'hyperlinks',
-    'hyper-always-on-top'
+    "hyper-hide-title",
+    //"hyper-snazzy",
+    "hyperterm-atom-dark",
+    //"hyper-chesterish",
+    "hypercwd",
+    "hyper-tabs-enhanced",
+    "hyperlinks"
   ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
-  localPlugins: []
+  localPlugins: [],
+
+  keymaps: {
+    // Example
+    // 'window:devtools': 'cmd+alt+o',
+  }
 };
