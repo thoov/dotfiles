@@ -88,6 +88,7 @@ export EDITOR=nvim
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias travis="cd ~/Documents/travis"
 alias store="cd ~/Documents/nest/store"
+alias billing="cd ~/Documents/nest/billing"
 alias account="cd ~/Documents/nest/account"
 alias ruby="cd ~/Documents/nest/ruby"
 alias kill-nginx='sudo kill $(ps aux | grep '\''[n]ginx'\'' | awk '\''{print $2}'\'')'
@@ -114,3 +115,11 @@ if [ -f '/Users/thoov/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/thoov/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/thoov/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export JAVA_HOME=~/jdk1.7.0_72
+
+export ANT_HOME=~/Documents/nest/billing/apache-ant-1.9.4
+
+export PATH=$ANT_HOME/bin:$JAVA_HOME/bin:$PATH
+
+export ANT_OPTS="-Xms1536m -Xmx1536m -XX:PermSize=1024m -XX:MaxPermSize=2048m"

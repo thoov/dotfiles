@@ -1,7 +1,10 @@
 module.exports = {
   config: {
+    // which channel to follow for updates
+    updateChannel: 'canary',
+
     // default font size in pixels for all tabs
-    fontSize: 14,
+    fontSize: 18,
 
     // font family with optional fallbacks
     fontFamily: 'Inconsolata, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',

@@ -1,8 +1,39 @@
 "*":
+  "autocomplete-paths":
+    extensions: [
+      "js"
+      "jsx"
+      "ts"
+    ]
+    includeCurrentDirectory: true
+    prefixes: [
+      "import\\s+.*?from\\s+['\"]"
+      "require\\(['\"]"
+    ]
+    replaceOnInsert: [
+      [
+        ".js?$"
+        ""
+      ]
+      [
+        ".jsx?$"
+        ""
+      ]
+      [
+        ".ts$"
+        ""
+      ]
+      [
+        ".coffee$"
+        ""
+      ]
+    ]
+    scopes: []
   core:
     allowPendingPaneItems: false
     audioBeep: false
     disabledPackages: [
+      "autocomplete-paths"
       "vim-mode-plus"
       "ex-mode"
       "relative-numbers"
@@ -29,6 +60,7 @@
     projectSearchResultsPaneSplitDirection: "right"
   linter: {}
   "linter-ui-default":
+    panelHeight: -29
     showPanel: true
   "node-debugger":
     nodePath: "/Users/thoov/.nvm/versions/node/v4.3.2/bin/node"
@@ -37,6 +69,10 @@
       animationSpeed: 10
       defaultPanelHeight: "200px"
       fontSize: "12"
+  "prettier-atom":
+    formatOnSaveOptions:
+      isDisabledIfNotInPackageJson: true
+    useEslint: true
   "seti-ui":
     compactView: true
     disableAnimations: true
@@ -67,5 +103,6 @@
     clearMultipleCursorsOnEscapeInsertMode: true
     ignoreCaseForSearch: true
     incrementalSearch: true
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   welcome:
     showOnStartup: false
