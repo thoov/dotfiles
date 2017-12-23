@@ -122,7 +122,6 @@ set statusline=%=%f\ %m
 " set fillchars=vert:\ ,stl:\ ,stlnc:\ " this is causing ////// on the
 " statusline
 set laststatus=2
-set noshowmode
 
 if (has('termguicolors'))
  set termguicolors
@@ -177,7 +176,9 @@ let g:deoplete#enable_at_startup = 1
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif

@@ -1,12 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/thoov/.oh-my-zsh
+export ZSH=/Users/thoover/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME=""
-DEFAULT_USER="thoov"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -86,18 +85,8 @@ export EDITOR=nvim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias travis="cd ~/Documents/travis"
-alias vim="nvim"
 
-export NVM_DIR="/Users/thoov/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-fpath=( "$HOME/.zfunctions" $fpath )
-
-autoload -U promptinit; promptinit
-prompt pure
-
-source /Users/thoov/.homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH="$HOME/.yarn/bin:$PATH"
-
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

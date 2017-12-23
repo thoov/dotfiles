@@ -21,7 +21,7 @@ module.exports = {
     cursorShape: 'BEAM',
 
     // set to true for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
@@ -84,7 +84,7 @@ module.exports = {
     //
     // Powershell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-    shell: '',
+    shell: 'zsh',
 
     // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
     // by default ['--login'] will be used
@@ -117,9 +117,7 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
     "hyper-hide-title",
-    //"hyper-snazzy",
     "hyperterm-atom-dark",
-    //"hyper-chesterish",
     "hypercwd",
     "hyper-tabs-enhanced",
     "hyperlinks"
