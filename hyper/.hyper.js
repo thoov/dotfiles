@@ -9,10 +9,10 @@ module.exports = {
     updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 16,
+    fontSize: 20,
 
     // font family with optional fallbacks
-    fontFamily: 'Inconsolata, Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: 'Hack NF, Hack, Consolas, Inconsolata, IBM Plex Mono',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -53,24 +53,24 @@ module.exports = {
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
-    colors: {
-      black: '#000000',
-      red: '#ff0000',
-      green: '#33ff00',
-      yellow: '#ffff00',
-      blue: '#0066ff',
-      magenta: '#cc00ff',
-      cyan: '#00ffff',
-      white: '#d0d0d0',
-      lightBlack: '#808080',
-      lightRed: '#ff0000',
-      lightGreen: '#33ff00',
-      lightYellow: '#ffff00',
-      lightBlue: '#0066ff',
-      lightMagenta: '#cc00ff',
-      lightCyan: '#00ffff',
-      lightWhite: '#ffffff'
-    },
+    colors: [
+      '#1B2B34',
+      '#343D46',
+      '#4F5B66',
+      '#65737E',
+      '#A7ADBA',
+      '#C0C5CE',
+      '#CDD3DE',
+      '#D8DEE9',
+      '#EC5f67',
+      '#F99157',
+      '#FAC863',
+      '#99C794',
+      '#5FB3B3',
+      '#6699CC',
+      '#C594C5',
+      '#AB7967'
+    ],
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -94,10 +94,10 @@ module.exports = {
     env: {},
 
     // set to false for no bell
-    bell: 'SOUND',
+    bell: false,
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
 
     // if true, on right click selected text will be copied or pasted if no
     // selection is present (true by default on Windows)
@@ -107,6 +107,10 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+
+    hyperTabs: {
+      tabIconsColored: true,
+    }
   },
 
   // a list of plugins to fetch and install from npm
@@ -116,12 +120,27 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
+    // THEMES
+    //"hyperterm-oceanic-next",
+    //"hyper-solarized-dark",
+    //"hyper-dracula",
+    //"verminal",
+    //"hyperterm-atom-dark",
+    //"hyper-snazzy",
+    "hyper-materialshell",
+
+    // OTHER
     "hyper-hide-title",
-    "hyperterm-atom-dark",
     "hypercwd",
     "hyper-tabs-enhanced",
-    "hyperlinks"
+
+    // MUST BE LAST
+    "hyperterm-final-say"
   ],
+
+  materialshell: {
+    theme: 'dark'
+  },
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
@@ -130,6 +149,6 @@ module.exports = {
 
   keymaps: {
     // Example
-    // 'window:devtools': 'cmd+alt+o',
+    'noop': 'cmd+r' // this is to prevent accidentally refreshing the terminal when I just ment the brower
   }
 };
