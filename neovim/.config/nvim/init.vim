@@ -1,26 +1,36 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'mhinz/vim-grepper'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'milkypostman/vim-togglelist'
+" the good stuff
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+
+" languages
+Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
+
 " one colorscheme pack to rule them all!
 Plug 'flazz/vim-colorschemes'
+
 " display number of search matches & index of a current match
 Plug 'google/vim-searchindex'
+
+" Project wide searching (sublime-like)
 Plug 'dyng/ctrlsf.vim'
+Plug 'mhinz/vim-grepper' " TODO: do I still need this?
+
+" FZF searching for files, buffers, etc
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set nocompatible
@@ -35,11 +45,13 @@ let mapleader = ','
 inoremap jj <ESC>
 
 nnoremap <leader>g :GitGutterToggle<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlPCurWD<CR>
 nnoremap <leader>s :GrepperRg<Space>
+
+nnoremap <leader>t :GFiles<CR>
+nnoremap <leader>a :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 
 " Remap Ctrl-hjkl to move to different panes
 noremap <C-h> <C-w>h
@@ -55,7 +67,6 @@ nnoremap <leader>h :split<CR><C-w>j
 nmap <silent> <C-n> <Plug>(ale_previous_wrap)
 nmap <silent> <C-p> <Plug>(ale_next_wrap)
 
-
 " UI Config
 set relativenumber number
 set wildmenu
@@ -68,8 +79,6 @@ set encoding=utf8
 set ignorecase
 set smartcase
 set directory-=.
-
-let g:ctrlp_match_window = 'order:ttb,max:20'
 
 " keep section highlighed when indenting
 vmap < <gv
@@ -107,8 +116,6 @@ function! InsertTabWrapper()
 endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|tmp|dist'
 
 if executable('rg')
   set grepprg=rg\ --color=never
@@ -230,7 +237,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeQuitOnOpen = 1
 
 "
-" Make active non active buffer less pronounced
+" Make non active buffer less pronounced
 "
 augroup BgHighlight
     autocmd!
@@ -239,12 +246,12 @@ augroup BgHighlight
 augroup END
 
 "
-" CTRLP
-"
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-"
 " CTRLSF
 "
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_winsize = '35%'
+
+"
+" FZF
+"
+let g:fzf_layout = { 'down': '~25%' }
