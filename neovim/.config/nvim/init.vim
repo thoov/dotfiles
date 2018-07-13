@@ -15,6 +15,7 @@ Plug 'tpope/vim-commentary'
 " languages
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'leafgarland/typescript-vim'
 
@@ -62,6 +63,15 @@ noremap <C-l> <C-w>l
 " Split plane and make the new one active
 nnoremap <leader>v :vsplit<CR><C-w>l
 nnoremap <leader>h :split<CR><C-w>j
+
+" Make resizing use sane values
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+
+nnoremap <leader>i :vsplit $HOME/.config/nvim/init.vim<CR>
+nnoremap <leader>r :source $HOME/.config/nvim/init.vim<CR>
 
 " Go to next or previous lint error
 nmap <silent> <C-n> <Plug>(ale_previous_wrap)

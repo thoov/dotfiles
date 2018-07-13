@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 20,
+    fontSize: 16,
 
     // font family with optional fallbacks
     fontFamily: 'Hack NF, Hack, Consolas, Inconsolata, IBM Plex Mono',
