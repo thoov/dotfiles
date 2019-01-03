@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: 'Hack NF, Hack, Consolas, Inconsolata, IBM Plex Mono',
+    fontFamily: 'Roboto Mono, Hack NF, Consolas, Inconsolata, IBM Plex Mono',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
@@ -131,7 +131,7 @@ module.exports = {
 
     // OTHER
     "hyper-hide-title",
-    "hypercwd",
+    //"hypercwd",
     "hyper-tabs-enhanced",
 
     // MUST BE LAST

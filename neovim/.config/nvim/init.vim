@@ -1,117 +1,89 @@
+set nocompatible
+
 call plug#begin('~/.local/share/nvim/plugged')
+" Plug 'Raimondi/delimitmate', { 'do': ':UpdateRemotePlugins' }
+" Plug 'milkypostman/vim-togglelist'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
-Plug 'kshenoy/vim-signature'
-Plug 'Yggdroot/indentLine'
-Plug 'Raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim'
-Plug 'machakann/vim-highlightedyank'
-Plug 'milkypostman/vim-togglelist'
-" the good stuff
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-
-" languages
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'leafgarland/typescript-vim'
-
-" one colorscheme pack to rule them all!
-Plug 'flazz/vim-colorschemes'
-
-" display number of search matches & index of a current match
+Plug 'mhartington/oceanic-next'
 Plug 'google/vim-searchindex'
-
-" Project wide searching (sublime-like)
-Plug 'dyng/ctrlsf.vim'
-Plug 'mhinz/vim-grepper' " TODO: do I still need this?
-
-" FZF searching for files, buffers, etc
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-set nocompatible
 filetype plugin indent on
 let mapleader = ','
 
 "
-"
 " Remaps
 "
-"
 inoremap jj <ESC>
-
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>s :GrepperRg<Space>
-
-nnoremap <leader>t :GFiles<CR>
-nnoremap <leader>a :Files<CR>
+nnoremap <leader>t :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-
+nnoremap <leader>s :Rg<CR>
+nnoremap <leader>i :vsplit $HOME/.config/nvim/init.vim<CR>
+" Split plane and make the new one active
+nnoremap <leader>v :vsplit<CR><C-w>l
+nnoremap <leader>h :split<CR><C-w>j
 " Remap Ctrl-hjkl to move to different panes
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-
-" Split plane and make the new one active
-nnoremap <leader>v :vsplit<CR><C-w>l
-nnoremap <leader>h :split<CR><C-w>j
-
 " Make resizing use sane values
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-
-nnoremap <leader>i :vsplit $HOME/.config/nvim/init.vim<CR>
-nnoremap <leader>r :source $HOME/.config/nvim/init.vim<CR>
-
+nnoremap <silent> + :resize +5<CR>
+nnoremap <silent> - :resize -5<CR>
+nnoremap <silent> < :vertical resize +5<CR>
+nnoremap <silent> > :vertical resize -5<CR>
 " Go to next or previous lint error
 nmap <silent> <C-n> <Plug>(ale_previous_wrap)
 nmap <silent> <C-p> <Plug>(ale_next_wrap)
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" This unsets the "last search pattern" register by hitting return
+nnoremap <esc> :nohlsearch<return><esc>
+" When selecting a word with * stay on the word under the cursor instead of
+" jumping to the next occurrence
+nnoremap * *``
 
-" UI Config
 set relativenumber number
 set wildmenu
 set wildignore=log/**,node_modules/**,bower_components/**,target/**,tmp/**,*/.git/*,*/tmp/*,*.swp
 set wildmode=longest,list,full
 set lazyredraw
-
 set autoindent
 set encoding=utf8
 set ignorecase
 set smartcase
 set directory-=.
+set cursorline
+set autoread
+set clipboard=unnamed
+set inccommand=nosplit
+set noshowmode
+" show trailing whitespace
+set list
+set listchars=tab:▸\ ,trail:▫
+" Enable persistent undo even after closing the file
+set undodir=/tmp/undodir
+set undofile
 
 " keep section highlighed when indenting
 vmap < <gv
 vmap > >gv
 
-set noshowmode
-
-" show trailing whitespace
-set list
-set listchars=tab:▸\ ,trail:▫
-
-" Enable persistent undo even after closing the file
-set undodir=/tmp/undodir
-set undofile
-
-" remove whitespace from eol on write
-
-" Yggdroot/indentLine
-let g:indentLine_char = '¦'
-let g:indentLine_color_term = 239
-
 " Shougo/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " Smart tab completion which allows tab to be pressed at the
 " beginning of the line or when not after a character but still
@@ -125,71 +97,37 @@ function! InsertTabWrapper()
     endif
 endfunction
 
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-" This unsets the "last search pattern" register by hitting return
-" nnoremap <silent> <CR> :nohlsearch<CR>
-nnoremap <esc> :nohlsearch<return><esc>
-
-set clipboard=unnamed
-
-augroup myvimrchooks
-    au!
-    autocmd bufwritepost init.vim source ~/.dotfiles/neovim/.config/nvim/init.vim
-
-    " Jump to last cursor position unless it's invalid or in an event handler
-    autocmd BufReadPost *
-          \ if line("'\"") > 0 && line("'\"") <= line("$") |
-          \   exe "normal g`\"" |
-          \ endif
-augroup END
-
-" Disable ale lint warnings from being highlighted
-let g:ale_set_highlights = 0
-
-set inccommand=nosplit
-
-" Turn the cursor back to a vertical line when exiting vim
-au VimLeave * set guicursor=a:ver100-blinkon0
-
-set cursorline
-
-" If a file is changed outside of vim, automatically reload it without asking
-set autoread
-
-" When selecting a word with * stay on the word under the cursor instead of
-" jumping to the next occurrence
-nnoremap * *``
-
-let g:javascript_plugin_flow = 1
-
-"
 "
 " COLORS
 "
-"
 syntax on
 
-hi CursorLine cterm=BOLD ctermbg=235 ctermfg=NONE
+colorscheme OceanicNext
+
+hi Normal ctermbg=NONE
+hi NormalNC ctermfg=237
+hi LineNr ctermbg=NONE
+
+hi CursorLine ctermbg=237 ctermfg=NONE
 hi CursorColumn cterm=NONE ctermbg=DarkGreen ctermfg=NONE
 hi Cursor cterm=NONE ctermfg=white ctermbg=black
 hi Search ctermbg=240 ctermfg=NONE cterm=BOLD,UNDERLINE
 hi Visual ctermbg=237 ctermfg=NONE
 
-"
+hi SignColumn ctermbg=NONE
+hi GitGutterAdd ctermbg=NONE
+hi GitGutterChange ctermbg=NONE
+hi GitGutterDelete ctermbg=NONE
+hi GitGutterChangeDelete ctermbg=NONE
+hi EndOfBuffer NONE
+
 "
 " STATUS LINE
 "
 " https://hackernoon.com/the-last-statusline-for-vim-a613048959b2
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
 " https://gabri.me/blog/diy-vim-statusline/
-"
 "
 hi User1 ctermbg=252 ctermfg=16 guibg=green guifg=red
 hi User2 ctermbg=NONE ctermfg=blue guibg=red guifg=blue
@@ -234,9 +172,7 @@ function! GitBranch()
 endfunction
 
 "
-"
 " NERDTree
-"
 "
 let NERDTreeStatusline="%2*" " turn nerd tree's status line to NONE
 let NERDTreeShowHidden=1
@@ -255,13 +191,22 @@ augroup BgHighlight
     autocmd WinLeave * set norelativenumber
 augroup END
 
-"
-" CTRLSF
-"
-let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_winsize = '35%'
+augroup ReloadVimInit
+    autocmd!
+    autocmd bufwritepost init.vim source ~/.dotfiles/neovim/.config/nvim/init.vim
+augroup END
+
+" Turn the cursor back to a vertical line when exiting vim
+au VimLeave * set guicursor=a:ver100-blinkon0
 
 "
 " FZF
 "
-let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_layout = { 'down': '~30%' }
+
+"
+" ALE
+"
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
