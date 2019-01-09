@@ -131,7 +131,7 @@ module.exports = {
 
     // OTHER
     "hyper-hide-title",
-    //"hypercwd",
+    "hypercwd",
     "hyper-tabs-enhanced",
 
     // MUST BE LAST

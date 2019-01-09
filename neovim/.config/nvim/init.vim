@@ -3,7 +3,7 @@ set nocompatible
 call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'Raimondi/delimitmate', { 'do': ':UpdateRemotePlugins' }
 " Plug 'milkypostman/vim-togglelist'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
@@ -210,3 +210,6 @@ let g:fzf_layout = { 'down': '~30%' }
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
