@@ -78,6 +78,12 @@ set listchars=tab:▸\ ,trail:▫
 set undodir=/tmp/undodir
 set undofile
 
+filetype plugin indent on
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
 " keep section highlighed when indenting
 vmap < <gv
 vmap > >gv
@@ -96,7 +102,6 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
-
 
 "
 " COLORS
@@ -211,5 +216,21 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+hi default CocHighlightText  cterm=UNDERLINE,BOLD
+

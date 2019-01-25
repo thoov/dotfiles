@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: 'Roboto Mono, Hack NF, Consolas, Inconsolata, IBM Plex Mono',
+    fontFamily: 'RobotoMono NF, Hack NF, Consolas, Inconsolata, IBM Plex Mono',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(248,28,229,0.8)',
