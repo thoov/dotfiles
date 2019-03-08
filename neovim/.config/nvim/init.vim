@@ -1,26 +1,28 @@
 set nocompatible
 
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'Raimondi/delimitmate', { 'do': ':UpdateRemotePlugins' }
-" Plug 'milkypostman/vim-togglelist'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'mhartington/oceanic-next'
 Plug 'google/vim-searchindex'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
+
+Plug 'rakr/vim-one'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'rhysd/clever-f.vim'
+Plug 'machakann/vim-sandwich'
+Plug 'TaDaa/vimade'
 call plug#end()
 
 filetype plugin indent on
 let mapleader = ','
+
+colorscheme one
 
 "
 " Remaps
@@ -29,7 +31,8 @@ inoremap jj <ESC>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>t :Files<CR>
+nnoremap <leader>a :Files<CR>
+nnoremap <leader>t :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :Rg<CR>
 nnoremap <leader>i :vsplit $HOME/.config/nvim/init.vim<CR>
@@ -108,11 +111,11 @@ endfunction
 "
 syntax on
 
-colorscheme OceanicNext
+" colorscheme OceanicNext
+colorscheme one
 
+" use the terminals "background" color
 hi Normal ctermbg=NONE
-hi NormalNC ctermfg=237
-hi LineNr ctermbg=NONE
 
 hi CursorLine ctermbg=237 ctermfg=NONE
 hi CursorColumn cterm=NONE ctermbg=DarkGreen ctermfg=NONE
@@ -127,6 +130,7 @@ hi GitGutterDelete ctermbg=NONE
 hi GitGutterChangeDelete ctermbg=NONE
 hi EndOfBuffer NONE
 
+hi Pmenu ctermbg=gray guibg=gray
 "
 " STATUS LINE
 "
@@ -226,11 +230,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 hi default CocHighlightText  cterm=UNDERLINE,BOLD
-

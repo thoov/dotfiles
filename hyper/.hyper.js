@@ -124,10 +124,11 @@ module.exports = {
     //"hyperterm-oceanic-next",
     //"hyper-solarized-dark",
     //"hyper-dracula",
-    //"verminal",
     //"hyperterm-atom-dark",
     //"hyper-snazzy",
-    "hyper-materialshell",
+    "hyper-one-dark",
+    //"hyper-materialshell",
+    //"verminal",
 
     // OTHER
     "hyper-hide-title",
