@@ -29,3 +29,5 @@
 	prompt = false
 [diff]
 	tool = Kaleidoscope
+[log]
+	date = local
