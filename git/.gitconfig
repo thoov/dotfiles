@@ -21,6 +21,7 @@
 	trustexitcode = true
 [merge]
 	tool = opendiff
+	conflictstyle = diff3
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
@@ -31,3 +32,5 @@
 	tool = Kaleidoscope
 [log]
 	date = local
+[pull]
+	rebase = true

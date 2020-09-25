@@ -1,3 +1,7 @@
 {
-  "coc.preferences.diagnostic.displayByAle": true
+  "coc.preferences.hoverTarget": "float",
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.level": "warning"
 }
