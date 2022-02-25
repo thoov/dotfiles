@@ -8,7 +8,7 @@ export ZSH="/Users/thoover/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="tjkirch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -97,7 +97,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NOTION_HOME="$HOME/.notion"
-[ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
 
-export PATH="${NOTION_HOME}/bin:$PATH"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NODE_OPTIONS="--max-old-space-size=16384"
+eval "$(starship init zsh)"
+
+alias del="rmtrash"
+alias ls="exa"
+alias cat="bat"
+export PATH="$HOME/code/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

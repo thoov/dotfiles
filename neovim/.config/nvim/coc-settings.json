@@ -1,7 +1,0 @@
-{
-  "coc.preferences.hoverTarget": "float",
-  "diagnostic.errorSign": "✘",
-  "diagnostic.warningSign": "",
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.level": "warning"
-}

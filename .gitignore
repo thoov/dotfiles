@@ -6,4 +6,4 @@ neovim/*
 neovim/.config/*
 !neovim/.config/nvim/
 
-neovim/.config/nvim/pack
+neovim/.config/nvim/plugin
