@@ -1,36 +1,20 @@
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-  required = true
 [user]
-	name = Travis Hoover
-	email = thoov7@gmail.com
-  signingkey = 556820AAE5FAA960
-[commit]
-  gpgsign = false
+  name = Travis Hoover
+  email = thoov7@gmail.com
 [alias]
   st = status
   co = checkout
 [core]
   editor = nvim
-[includeIf "gitdir:~/code/li/"]
+[includeIf "gitdir:~/code/@linkedin/"]
   path = .gitconfig-linkedin
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustexitcode = true
 [merge]
-	tool = opendiff
-	conflictstyle = diff3
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[mergetool]
-	prompt = false
-[diff]
-	tool = Kaleidoscope
+  tool = opendiff
+  conflictstyle = diff3
 [log]
-	date = local
-[pull]
-	rebase = true
+  date = local
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

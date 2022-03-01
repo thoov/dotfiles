@@ -1,6 +1,5 @@
 [user]
   name = Travis Hoover
   email = thoover@linkedin.com
-
 [commit]
   gpgsign = false

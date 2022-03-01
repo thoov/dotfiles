@@ -100,12 +100,14 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NODE_OPTIONS="--max-old-space-size=16384"
+export NODE_OPTIONS="--max-old-space-size=8192"
 eval "$(starship init zsh)"
 
-alias del="rmtrash"
+alias del="trash"
 alias ls="exa"
+alias sl="exa"
 alias cat="bat"
-export PATH="$HOME/code/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$VOLTA_HOME/bin:/opt/homebrew/bin:$PATH"
+export EDITOR=nvim
