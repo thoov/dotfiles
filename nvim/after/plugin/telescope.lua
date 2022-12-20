@@ -4,35 +4,14 @@ if not present then
    return
 end
 
-local actions = require('telescope.actions')
-local telescope_actions = require("telescope.actions.set")
-local fixfolds = {
-	hidden = true,
-	attach_mappings = function(_)
-		telescope_actions.select:enhance({
-			post = function()
-				vim.cmd(":normal! zx")
-			end,
-		})
-		return true
-	end,
-}
-
+local actions = require("telescope.actions")
 telescope.setup({
-  pickers = {
-		buffers = fixfolds,
-		find_files = fixfolds,
-		git_files = fixfolds,
-		grep_string = fixfolds,
-		live_grep = fixfolds,
-		oldfiles = fixfolds,
-  },
   defaults = {
     mappings = {
       i = {
-        ['<C-k>'] = actions.move_selection_previous,
-        ['<C-j>'] = actions.move_selection_next,
-        ['<esc>'] = actions.close
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<esc>"] = actions.close
       }
     },
     vimgrep_arguments = {
@@ -83,3 +62,9 @@ telescope.setup({
 })
 
 telescope.load_extension('fzf')
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })<cr>')

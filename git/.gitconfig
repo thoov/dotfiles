@@ -10,7 +10,7 @@
   path = .gitconfig-linkedin
 [merge]
   tool = opendiff
-  conflictstyle = diff3
+	conflictstyle = diff3
 [log]
   date = local
 [filter "lfs"]
@@ -18,3 +18,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pull]
+	ff = only
+[safe]
+	directory = /usr/local/linkedin/Homebrew/Library/Taps/epe.clientengineering/homebrew-brewin
+	directory = /usr/local/linkedin/Homebrew/Library/Taps/epe.clientengineering/homebrew-engtools-core
+	directory = /usr/local/linkedin/Homebrew

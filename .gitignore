@@ -1,9 +1,1 @@
-!neovim/
-
-neovim/*
-!neovim/.config/
-
-neovim/.config/*
-!neovim/.config/nvim/
-
-neovim/.config/nvim/plugin
+nvim/plugin/packer_compiled.lua
